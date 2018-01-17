@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1516185486 source:c:\users\dell1\documents\github\zsmirlab\zsmirlab1\main.cpp
+1516187324 source:c:\users\dell1\documents\github\zsmirlab\zsmirlab1\main.cpp
 	<iostream>
 	"opencv2/imgproc/imgproc.hpp"
 	"opencv2/highgui/highgui.hpp"

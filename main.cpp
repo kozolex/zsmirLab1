@@ -12,13 +12,15 @@ int main()
         return -1;
     }
     int iLowH=0, iHighH=179, iLowS=0, iHighS=255, iLowV=0, iHighV=255;
+    int sizeEroDil = 0;
     namedWindow("Kontrola", CV_WINDOW_AUTOSIZE);
-    createTrackbar("LowH", "Control", &iLowH, 179); //Hue (0 - 179)
-    createTrackbar("HighH", "Control", &iHighH, 179);
-    createTrackbar("LowS", "Control", &iLowS, 255); //Saturation (0 - 255)
-    createTrackbar("HighS", "Control", &iHighS, 255);
-    createTrackbar("LowV", "Control", &iLowV, 255);//Value (0 - 255)
-    createTrackbar("HighV", "Control", &iHighV, 255);
+    createTrackbar("LowH", "Kontrola", &iLowH, 179); //Hue (0 - 179)
+    createTrackbar("HighH", "Kontrola", &iHighH, 179);
+    createTrackbar("LowS", "Kontrola", &iLowS, 255); //Saturation (0 - 255)
+    createTrackbar("HighS", "Kontrola", &iHighS, 255);
+    createTrackbar("LowV", "Kontrola", &iLowV, 255);//Value (0 - 255)
+    createTrackbar("HighV", "Kontrola", &iHighV, 255);
+    createTrackbar("EroDill", "Kontrola", &sizeEroDil, 20);//Value (0 - 20)
 
     Mat imgOriginal;
     Mat imgHSV;
@@ -33,6 +35,16 @@ int main()
         }
         cvtColor(imgOriginal, imgHSV, COLOR_BGR2HSV);
         inRange(imgHSV, Scalar(iLowH, iLowS, iLowV), Scalar(iHighH, iHighS, iHighV), imgThresholded);
+
+        if (sizeEroDil>0)
+        {
+            //morfologiczne otwarcie
+            erode(imgThresholded, imgThresholded, getStructuringElement(MORPH_ELLIPSE, Size(sizeEroDil, sizeEroDil)) );
+            dilate( imgThresholded, imgThresholded, getStructuringElement(MORPH_ELLIPSE, Size(sizeEroDil, sizeEroDil)) );
+            //morfologiczne zamknięcie
+            dilate( imgThresholded, imgThresholded, getStructuringElement(MORPH_ELLIPSE, Size(sizeEroDil, sizeEroDil)) );
+            erode(imgThresholded, imgThresholded, getStructuringElement(MORPH_ELLIPSE, Size(sizeEroDil, sizeEroDil)) );
+        }
 
         imshow("Kamera RGB", imgOriginal);
         imshow("Kamera HSV", imgHSV);
