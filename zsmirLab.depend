@@ -1,6 +1,23 @@
 # depslib dependency file v1.0
-1516187324 source:c:\users\dell1\documents\github\zsmirlab\zsmirlab1\main.cpp
+1516216859 source:c:\users\dell1\documents\github\zsmirlab\zsmirlab1\main.cpp
 	<iostream>
 	"opencv2/imgproc/imgproc.hpp"
 	"opencv2/highgui/highgui.hpp"
+	"serialib/serialib.h"
+
+1348587114 source:c:\users\dell1\documents\github\zsmirlab\zsmirlab1\serialib\serialib.cpp
+	"serialib.h"
+
+1348586818 c:\users\dell1\documents\github\zsmirlab\zsmirlab1\serialib\serialib.h
+	<sys/time.h>
+	<windows.h>
+	<stdlib.h>
+	<sys/types.h>
+	<sys/shm.h>
+	<termios.h>
+	<string.h>
+	<iostream>
+	<fcntl.h>
+	<unistd.h>
+	<sys/ioctl.h>
 
